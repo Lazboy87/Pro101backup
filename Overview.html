@@ -5,16 +5,16 @@
     </head>
     
     <header id= "header1">ThinkTask</header>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <body>
-        <div class="sidebar" id ="sidebar1">Menu</div> 
+        
         
         <!--THE projectcontainer div start-->
         <div class="ContainerProject" id ="ContainerP">
 
             <!--THE inprogresstab div start-->
             <div class="overlayTab"id="InProgress">
-                <div class="overlayHeader"id="InprogressHeader" type="button" name="answer" value="Show imp" onclick="showimp()" >
+                <div class="overlayHeader"id="InprogressHeader" type="button" name="answer" value="Show imp" onclick="showimp()" data-tab="inprogress" >
                     <p>In Progress</p>
                 </div>
 
@@ -23,15 +23,15 @@
                         <p>Projects in Progress:</p>
                     </div>
 
-                    <div class=UserProjecttab id="IpProject1"></div>
-                    <div class=UserProjecttab id="IpProject2"></div>
+                    <div class="UserProjecttab" id="IpProject1"></div>
+                    
                 </div>
             </div>
             <!--THE inprogresstab div end-->      
 
             <!--THE upcomingtab div start-->          
             <div class="overlayTab"id="UpComing">
-                <div class="overlayHeader"id="UpcomingHeader"type="button" name="answer" value="Show upc" onclick="showupc()">              <p>UpComing</p>
+                <div class="overlayHeader"id="UpcomingHeader"type="button" name="answer" value="Show upc" onclick="showupc()" data-tab="Upcomming">              <p>UpComing</p>
                 </div>
 
                 <div class="overcontainer"id="upcommingContainer">
@@ -39,8 +39,8 @@
                         <p>Projects Upcomming:</p>
                     </div>
 
-                    <div class=UserProjecttab id="UpProject1" ></div>
-                    <div class=UserProjecttab id="UpProject2"></div>
+                    <div class="UserProjecttab" id="UpProject1" ></div>
+                  
                 </div>
 
 
@@ -49,7 +49,7 @@
 
             <!--THE Completedtab div start-->
             <div class="overlayTab"id="Completed">
-                <div class="overlayHeader"id="CompletedHeader"type="button" name="answer" value="Show comp" onclick="showcomp()" >  <p>Completed</p>
+                <div class="overlayHeader"id="CompletedHeader"type="button" name="answer" value="Show comp" onclick="showcomp()"data-tab="Complete">  <p>Completed</p>
                 </div>
 
                 <div class="overcontainer"id="CompletedContainer" >
@@ -57,8 +57,8 @@
                         <p>Projects Completed:</p>
                     </div>
 
-                    <div class=UserProjecttab id="CompProject1" ></div>
-                    <div class=UserProjecttab id="CompProject2"></div>
+                    <div class="UserProjecttab" id="CompProject1" ></div>
+                    
                 </div>
             </div>
             <!--THE Completedtab div end-->
@@ -69,11 +69,7 @@
             <p>Project Feed:</p>
             
             <div class=FeedUpdate id="Feedup1"></div>
-            <div class=FeedUpdate id="Feedup2"></div>
-            <div class=FeedUpdate id="Feedup3"></div>
-            <div class=FeedUpdate id="Feedup4"></div>
-            <div class=FeedUpdate id="Feedup5"></div>
-            <div class=FeedUpdate id="Feedup6"></div>
+           
         </div>
         <!--THE projectcontainer div end-->
         
@@ -83,21 +79,26 @@
             <div id="line2"></div>
         </div>
         
-        <div class="Trashcan" id="Deleteproject1" > 
-            <img id="Deleteproject1" src="Pictures/trash_can.png">  
+        <div class="Trashcancont" id="Deleteprojectcont" > 
+            <img class="Trashcanimg" id="Deleteproject1" src="Pictures/trash_can.png">  
         </div>
          
    
         <div class="form" id="projectform">
             <form id="formPro">
-                Project Name:   
+                <div id="formHeader">Create your Project</div>
+                <br>
+                Project Name: <br>  
                 <input type="text" name="Project Name" id="Projectname"><br>
+                Chose its Phase:<br>
                 <select id="type" name="In progress/ Upcoming">
                     <option value="inprogress">In Progress</option>
                         <option value="upcoming">Upcoming</option>
                 </select>
                 <br>
-                <input type="button" id="send" name="answer" value="Create Project" onclick="createProject();closeform()">
+                <input type="button" id="send" name="answer" value="Create Project" onclick="createProject()">
+                
+                <input type="button" id="close" name="answer" value="Cancel" onclick="closeform()">
             </form>  
         
         

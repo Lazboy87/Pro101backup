@@ -15,6 +15,10 @@ const form = document.getElementById('projectform');
 
 
 
+var inProgressPro=[];
+var upcomPro=[];
+var completePro=[];
+
 
 
 
@@ -51,23 +55,8 @@ function showform()
 
 function closeform() 
 {
-form.style.display = "none"
-}
-
-
-/*
-var inProgressPro=[][];
-var upcomPro=[][];
-var completePro=[][];*/
-
-
-
-
-
-
-
-
-
+form.style.display = "none";
+}   
 
 
 
@@ -77,67 +66,78 @@ function createProject() {
 
  var type= document.getElementById("type").value;
     
-var div = document.createElement("div");
-div.style.width = "200px";
-div.style.height = "200px";
-div.style.background = "blue";
-div.style.color = "white";
-div.style.display= "inline-block";
-div.style.position="relative";
-div.innerHTML="Project:"+namepro;
-
-
-  /*
-div.onmouseout  = function doSth();
-div.onmouseover = function doSthElse();
+var divpro = document.createElement("div");
+var feedpro = document.createElement("div");
+  
+divpro.innerHTML=namepro;
+divpro.className="projectdiv";
+    divpro.setAttribute("draggable",true);
+    divpro.setAttribute("ondragstart",dragstart_handler(event););
+    
+    
     
 
-function doSth(){}
-    
-function doSthElse(){
-    
-style.color= "red";
-}
-*/
+feedpro.className="feeddiv";
+
+
 
 
 
 if(type == "inprogress"){
 
-    
+  var inps= " In Progress";  
+feedpro.innerHTML="User Crated Project"+"<br />"+ " Called: "+namepro +"<br />"+" In the: "+ inps+ " section.";
 
+ document.getElementById("Feedup1").appendChild(feedpro);   
+document.getElementById("IpProject1").appendChild(divpro);
+ 
+    namepro={name:namepro,Type:inps,}
+    inProgressPro.push(namepro);
+    
+    closeform();
+    
+  
 
-    
-document.getElementById("IpProject1").appendChild(div);
-    
 }
     
     
     
 if(type == "upcoming"){
-
+    
+var upcs= " Upcoming";  
+feedpro.innerHTML="User Crated Project"+"<br />"+ " Called: "+namepro +"<br />"+" In the: "+ upcs+ " section.";
     
 
-;
+document.getElementById("Feedup1").appendChild(feedpro);
     
-document.getElementById("UpProject1").appendChild(div);
+document.getElementById("UpProject1").appendChild(divpro);
+ 
+       namepro={name:namepro,Type:upcs,}
+    upcomPro.push(namepro);
     
+    
+    closeform();   
 }   
     
     
-    
+ 
   
     
     
-console.log(div);
+console.table(inProgressPro);
+    console.table(upcomPro);
+
 
 }
-   
+
+
+/* Drag and drop functions and listeners */
 
 
 
+const dragpro=document.getElementByClass("projectdiv");
 
-        
-    
+const dragtab=document.get
+
 
 
