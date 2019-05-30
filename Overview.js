@@ -5,6 +5,12 @@ const impCon = document.getElementById('InprogressContainer');
 const compCon = document.getElementById('CompletedContainer');
 
 const form = document.getElementById('projectform');
+
+
+
+const contimp= document.getElementById("IpProject1");
+const contcomp= document.getElementById("CompProject1");
+const contupc= document.getElementById("UpProject1");
     
 
 
@@ -27,6 +33,8 @@ function showupc()
     upcCon.style.display ="block";
     impCon.style.display="none";
     compCon.style.display="none";
+    
+    
    
 }
 
@@ -71,11 +79,13 @@ var feedpro = document.createElement("div");
   
 divpro.innerHTML=namepro;
 divpro.className="projectdiv";
-    divpro.setAttribute("id","projectdiv1");
+    divpro.setAttribute("id",namepro);
     divpro.setAttribute("draggable",true);
+   divpro.setAttribute("ondragstart","drag(event)","ondragend(dragend())");
+    
    
     
-    
+
     
 
 feedpro.className="feeddiv";
@@ -132,86 +142,119 @@ console.table(inProgressPro);
 }
 
 
-/* Drag and drop functions and listeners */
+
+
+/* drag and drop funtion START with const */
+
+
+const proheadcomp= document.getElementById("CompletedHeader");
+const proheadimp= document.getElementById("InprogressHeader");
+const proheadcupc= document.getElementById("UpcomingHeader");
+
+function opentabdragComp(){
+
+allowDrop(event);
+showcomp();
+proheadcomp.style.transform="scale(1.2)"; 
+
+}
 
 
 
-const dragpro=document.getElementByClass("projectdiv");
+function opentabdragImp(){
+proheadimp.style.transform="scale(1.2)"; 
+allowDrop(event);
+showimp(); 
+    
+   
+}
 
-const dragtab=document.getElementById("InprogressHeader");
 
+function opentabdragcUpc(){
+proheadcupc.style.transform="scale(1.2)"; 
+    
+allowDrop(event);
+showupc();    
+}
 
- //---> Try to implement this
-// The dragged item gets stored in dragged
-var dragged;
-
-//Eventes fires on the dargable target
-document.addEventListener("drag", function(e){
-    console.log("drag");
-}, false);
-
-//Dragstart
-document.addEventListener("dragstart", (e)=>{
-    //Store a reference on the dragged item
-    dragged = e.target;
-    //Make it more transparent on dragstart
-    e.target.style.opacity = .5;
-
-    console.log("drag start");
-}, false);
-
-//Dragend
-document.addEventListener("dragend", (e)=>{
-    //Reset transparency
-    e.target.style.opacity= "";
-
-    console.log("drag end");
-}, false);
-
-//Dragover
-document.addEventListener("dragover", (e)=>{
-    //Prevent default to allow drop
-    e.preventDefault();
-    console.log("drag over");
-}, false)
-
-//Dragenter
-document.addEventListener("dragenter", (e)=>{
-    //Highlight drop target when draggable element enters it
-    if (e.target.className == "dropZone") {
-        e.target.style.background = "grey";
-        console.log("drag enter");
-    }
-
-}, false)
-
-//Dragleave
-document.addEventListener("dragleave", (e)=>{
-    //Resets background of drop target whe element leaves it
-    if (e.target.className == "dropZone") {
-        e.target.style.background = "";
-        console.log("drag leave");
-    }
-
-}, false);
-
-//DROP
-document.addEventListener("drop", (e)=>{
-    //Prevent default action
-    e.preventDefault();
-    //Move dragged element to the selected drop target
-    if (e.target.className == "dropZone") {
-        e.target.style.background = "";
-        dragged.parentNode.removeChild(dragged);
-        e.target.appendChild(dragged);
-
-        console.log("drop");
-    }
-
-}, false)
-
+function allowDrop(ev) {
+    
      
- 
+    ev.preventDefault(); 
+}
+
+function drag(ev) {
+    
+
+    
+ev.dataTransfer.setData("text", ev.target.id);
+
+
+}
+
+function drop(ev) {
+  
+    
+   
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+   
+    
+    
+    ev.target.appendChild(document.getElementById(data));
+
+    
+  
+}
+
+
+function dragleaveComp(){
+    proheadcomp.style.transform="scale(1.0)"; 
+    console.log("draging of element is over");
+}
+
+function dragleaveImp(){
+    proheadimp.style.transform="scale(1.0)"; 
+    console.log("draging of element is over");
+}
+
+function dragleaveUpc(){
+    proheadcupc.style.transform="scale(1.0)"; 
+    console.log("draging of element is over");
+}
+
+
+
+
+function deldrop(ev)
+{
+    
+    
+var feedpro = document.createElement("div");
+ feedpro.className="feeddiv";    
+    
+ev.preventDefault();
+var data=ev.dataTransfer.getData("Text");
+var el = document.getElementById(data);
+el.parentNode.removeChild(el);
+   
+    document.getElementById("Feedup1").appendChild(feedpro);   
+    
+    feedpro.innerHTML="User DELETED Project"+"<br />"+ " Called: "+data;
+}
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
 
 
 

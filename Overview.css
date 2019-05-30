@@ -73,6 +73,9 @@ border-radius: 10px 10px 0px 0px;
    
 }
 
+
+
+
 .overlayHeader:hover{animation: nextarrow 1s forwards;}
 #CompletedHeader{
     left:240;
@@ -162,14 +165,15 @@ border-radius: 10px 10px 0px 0px;
 .feeddiv:hover{transform: scale(1.1);}
 
 #Deleteproject1{
-    right:530;
+    right:40;
     width: 40px;
-    bottom: 130;
+    bottom: 70;
     height: 40px;
     position: absolute;
     background: red;
     padding:10px;
     border-radius: 4px;
+    z-index: 100;
     
 
 }
